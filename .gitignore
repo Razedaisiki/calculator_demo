@@ -1,0 +1,5 @@
+.commandcode/
+.agent/
+.claude/
+__pycache__/
+.pytest_cache/
