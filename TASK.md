@@ -1,18 +1,20 @@
-# Task: Build a Modular Command Line Calculator
+# Task: Build a Modular Command Line Calculator with CI Validation
 
 ## Objective
 
 Create a modular Python command-line calculator from scratch.
 
-The calculator should support basic arithmetic operations and provide clear error handling.
+The calculator should support basic arithmetic operations, provide clear error handling, include automated tests, and configure GitHub Actions CI to automatically validate the project.
 
-The final application should be easy to understand, maintain, and test.
+The final project should demonstrate a complete software delivery workflow:
+
+Requirement → Implementation → Testing → CI Validation
 
 ---
 
-## Requirements
+# Requirements
 
-### 1. Command Line Interface
+## 1. Command Line Interface
 
 Create a command line interface:
 
@@ -22,7 +24,7 @@ python calculator.py <operation> <number1> <number2>
 
 ```
 
-The calculator must support the following operations:
+The calculator must support:
 
 - add
 - subtract
@@ -40,7 +42,7 @@ python calculator.py add 10 5
 
 ```
 
-Output:
+Expected output:
 
 ```
 
@@ -57,7 +59,7 @@ python calculator.py multiply 4 6
 
 ```
 
-Output:
+Expected output:
 
 ```
 
@@ -67,13 +69,11 @@ Output:
 
 ---
 
-### 2. Arithmetic Operations
+# 2. Arithmetic Operations
 
-Implement the following operations:
+Implement:
 
-#### Addition
-
-Calculate:
+## Addition
 
 ```
 
@@ -81,10 +81,7 @@ a + b
 
 ```
 
-
-#### Subtraction
-
-Calculate:
+## Subtraction
 
 ```
 
@@ -92,10 +89,7 @@ a - b
 
 ```
 
-
-#### Multiplication
-
-Calculate:
+## Multiplication
 
 ```
 
@@ -103,10 +97,7 @@ a * b
 
 ```
 
-
-#### Division
-
-Calculate:
+## Division
 
 ```
 
@@ -116,13 +107,11 @@ a / b
 
 ---
 
-### 3. Input Validation
+# 3. Input Validation and Error Handling
 
-The application must validate user input.
+The application must handle invalid inputs gracefully.
 
-The following cases must be handled:
-
-#### Unsupported operation
+## Unsupported operation
 
 Example:
 
@@ -132,7 +121,7 @@ python calculator.py power 2 3
 
 ```
 
-Expected behavior:
+Expected:
 
 ```
 
@@ -141,7 +130,7 @@ Error: unsupported operation
 ```
 
 
-#### Invalid number input
+## Invalid number input
 
 Example:
 
@@ -151,7 +140,7 @@ python calculator.py add abc 3
 
 ```
 
-Expected behavior:
+Expected:
 
 ```
 
@@ -160,7 +149,7 @@ Error: invalid number
 ```
 
 
-#### Division by zero
+## Division by zero
 
 Example:
 
@@ -170,7 +159,7 @@ python calculator.py divide 10 0
 
 ```
 
-Expected behavior:
+Expected:
 
 ```
 
@@ -178,13 +167,14 @@ Error: cannot divide by zero
 
 ```
 
+
 The application should not crash.
 
 ---
 
-### 4. Code Structure
+# 4. Code Structure
 
-The implementation should separate different responsibilities.
+Separate responsibilities into different modules.
 
 Recommended structure:
 
@@ -195,21 +185,26 @@ operations.py
 validator.py
 exceptions.py
 tests/
+.github/
+workflows/
+test.yml
 
 ```
 
+
 Responsibilities:
 
-#### calculator.py
+
+## calculator.py
 
 Responsible for:
 
-- command line parsing
-- calling calculator functions
-- displaying results
+- parsing command line arguments
+- invoking calculator operations
+- printing results
 
 
-#### operations.py
+## operations.py
 
 Responsible for:
 
@@ -219,29 +214,30 @@ Responsible for:
 - division
 
 
-#### validator.py
+## validator.py
 
 Responsible for:
 
 - validating operations
-- validating numeric input
+- validating numeric inputs
 
 
-#### exceptions.py
+## exceptions.py
 
 Responsible for:
 
 - custom error definitions
 
+
 ---
 
-### 5. Automated Tests
+# 5. Automated Tests
 
-Add automated tests.
+Add automated tests using pytest.
 
-Tests should cover:
+Tests must cover:
 
-#### Arithmetic Operations
+## Arithmetic Operations
 
 - addition
 - subtraction
@@ -249,34 +245,112 @@ Tests should cover:
 - division
 
 
-#### Error Handling
+## Error Handling
 
 - unsupported operation
 - invalid number input
 - division by zero
 
 
-#### CLI Behavior
+## CLI Behavior
 
-Verify that command line usage works correctly.
+Verify command line execution behavior.
 
 ---
 
-## Acceptance Criteria
+# 6. GitHub Actions CI Integration
+
+Configure GitHub Actions to automatically run tests.
+
+Create:
+
+```
+
+.github/workflows/test.yml
+
+```
+
+The CI workflow should:
+
+1. Trigger on:
+
+- push events
+- pull request events
+
+
+2. Setup Python environment.
+
+
+3. Install required dependencies.
+
+
+4. Run:
+
+```
+
+pytest
+
+```
+
+
+5. Fail the workflow when tests fail.
+
+
+Example workflow behavior:
+
+```
+
+Code Push
+
+```
+↓
+```
+
+GitHub Actions Triggered
+
+```
+↓
+```
+
+Install Dependencies
+
+```
+↓
+```
+
+Run Tests
+
+```
+↓
+```
+
+Pass / Fail
+
+```
+
+---
+
+# Acceptance Criteria
 
 The task is complete when:
 
-- [ ] Calculator supports addition, subtraction, multiplication, and division.
+- [ ] Calculator supports four arithmetic operations.
 - [ ] CLI commands work correctly.
 - [ ] Invalid input is handled gracefully.
-- [ ] Division by zero is prevented.
 - [ ] Code is separated into logical modules.
 - [ ] Automated tests are included.
+- [ ] GitHub Actions workflow is configured.
+- [ ] CI runs automatically on push and pull request.
+- [ ] CI passes successfully.
 - [ ] All tests pass.
 
 ---
 
-## Validation
+# Validation
+
+The following validations must succeed:
+
+## Local Validation
 
 Run:
 
@@ -286,7 +360,7 @@ pytest
 
 ```
 
-Expected result:
+Expected:
 
 ```
 
@@ -294,13 +368,33 @@ All tests pass.
 
 ```
 
+
+## CI Validation
+
+Push the repository to GitHub.
+
+Verify:
+
+```
+
+GitHub Actions
+|
+↓
+Test Workflow
+|
+↓
+pytest PASS
+
+```
+
 ---
 
-## Constraints
+# Constraints
 
 - Use Python only.
-- Do not use external dependencies.
-- Keep the implementation simple.
-- Follow clean code practices.
+- Use pytest for testing.
+- Use GitHub Actions for CI.
+- Do not use external dependencies unless necessary.
+- Keep implementation simple and modular.
 - Do not modify unrelated files.
 ```
